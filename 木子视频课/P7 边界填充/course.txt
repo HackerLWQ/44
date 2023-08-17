@@ -1,0 +1,9 @@
+1.边界填充
+top_size,bottom_size,left_size,right_size=(50,50,50,50)
+
+四种方法：
+BORDER_REPLICATE 复制法，复制最边缘像素
+BORDER_REFLECT 反射法 对称重复
+BORDER_REFLECT_101 对称无重复
+BORDER_WRAP 外包装法
+BORDER_CONSTANT 常量法;常数值填充

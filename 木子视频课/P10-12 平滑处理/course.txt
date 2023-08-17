@@ -1,0 +1,30 @@
+1.图像平滑处理
+①均值滤波：平均卷积-单位卷积核   滤除噪声点
+cv2.blur(img,(3,3))
+
+def cv_show(name,img):
+    cv2.imshow(name,img)
+    cv2.waitKey(0) #ms级
+    cv2.destroyAllWindows
+img=cv2.imread('cat.jpg')
+cv_show('cat',img)
+cat1=cv2.blur(img,(3,3))
+cv_show('cat1',cat1)
+cat2=cv2.blur(img,(10,10))
+cv_show('cat2',cat2)
+
+②方框滤波：True时 基本和均值滤波一样，可以选择归一化 ;False 越界取255
+box=cv2.boxFilter(img,-1,(3,3),normalize=False)
+
+③高斯函数：高斯模糊的卷积核里的数值是满足高斯分布的，离中间越近权重越大
+cv2.GaussianBlur(img,(5,5),1) 1-高斯函数标准差
+
+在该函数中，参数 (5, 5) 是指高斯核的大小，而参数 1 是高斯函数的标准差（也可以理解为方差的平方根），用于控制模糊程度。高斯模糊可以用来减少图像中的噪声，平滑图像并减少细节。
+你可以根据需要调整参数 (5, 5) 和 1 来控制高斯模糊的效果。通常情况下，增大高斯核的大小会导致更强的模糊效果，而增大标准差会使模糊更加弥散。
+
+④中值滤波：用中值代替-很好地去掉 噪音点！！！
+cv2.medianBlur(img,5)
+
+⑤图片集中展示 hstack横向/vstack纵向
+res=np.hstack/vstack(img1,img2,img3)
+

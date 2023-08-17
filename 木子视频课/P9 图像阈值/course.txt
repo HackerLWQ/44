@@ -1,0 +1,9 @@
+1.图像阈值
+rst,dst=cv2.threshold(src,thresh,maxval,type)
+
+type:
+THRESH_BINARY 二值化
+THRESH_BINARY_INV 二值化翻转
+THRESH_TRUNC 最大阈值截断
+THRESH_TOZERO 大于阈值不变，否则为0
+THRESH_TOZERO_INV TOZERO反转

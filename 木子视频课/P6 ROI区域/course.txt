@@ -1,0 +1,22 @@
+1.ROI region of interest
+def cv_show(name,img):
+    cv2.imshow(name,img)
+    cv2.waitKey(0) #ms级
+    cv2.destroyAllWindows
+img=cv2.imread('cat.jpg')
+
+cat=img[0:1000,0:500]//w、h
+
+cv_show('cat',cat)
+
+2.颜色通道提取 合并
+b,g,r=cv2.split(img)     b=img[:,:,0]
+
+img=cv2.merge((b,g,r))
+
+3.只保留某个 通道
+cur_img=img.copy()
+cur_img[:,:,0]=0
+cur_img[:,:,2]=0
+cv_show('R',cur_img)
+
