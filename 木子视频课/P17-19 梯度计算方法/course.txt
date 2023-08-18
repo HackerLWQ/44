@@ -1,0 +1,46 @@
+1.Sobel算子 dst=cv2.Sobel(src,ddepth,dx,dy,ksize) ddepth:图像深度 -1时与输入保持一致
+①ddepth理解
+在OpenCV中，cv2.Sobel() 是一个函数，用于计算图像的Sobel梯度。其中的参数有：
+
+src：输入图像，即要进行Sobel梯度计算的图像。
+ddepth：输出图像的深度，指定了结果图像的数据类型。例如，-1 表示结果图像与输入图像的深度一致，cv2.CV_64F 表示输出图像使用64位浮点数类型。
+dx 和 dy：分别表示Sobel梯度的阶数。dx 表示水平方向（x方向）的梯度，dy 表示垂直方向（y方向）的梯度。
+ksize：Sobel算子的大小，用于计算局部梯度。通常为奇数值，如3、5、7等。
+关于ddepth参数，它定义了输出图像的深度（数据类型），也就是像素值的存储方式。不同的深度对应不同的数据类型，影响了图像处理过程中的精度和范围。
+
+一些常见的ddepth参数值包括：
+
+cv2.CV_8U：8位无符号整数类型（0-255）。
+cv2.CV_16U：16位无符号整数类型（0-65535）。
+cv2.CV_32F：32位浮点数类型。
+cv2.CV_64F：64位浮点数类型。
+选择适当的ddepth取决于你期望的输出图像的数据范围和精度。通常情况下，如果你想保留更多的细节和精度，可以使用更高位的数据类型（例如cv2.CV_32F或cv2.CV_64F）。但同时也会占用更多的内存空间。如果你希望输出结果在0到255的范围内，可以使用cv2.CV_8U数据类型。
+
+②示例
+水平：Gx
+竖直：Gy
+sobelx=cv2.Sobel(img,cv2.CV_64F,1,0,ksize=3)
+sobelx=cv2.convertScaleAbs(sobelx)
+sobely=cv2.Sobel(img,cv2.CV_64F,1,0,ksize=3)
+sobely=cv2.convertScaleAbs(sobely)
+
+sobelxy=cv2.addWeighted(sobelx,0.5,sobely,0.5,0) 0是偏置项
+or直接计算 但是效果不如分开做
+sobelxy=cv2.Sobel(img,cv2.CV_64F,1,1,ksize=3)
+sobelxy=cv2.convertScaleAbs(sobelxy)
+
+白到黑是正数，黑到白是负数：负数如果不处理会截断成0
+
+
+2.Scharr算子 和 laplacian算子
+①scharr算子：类似sobel，但是数值放大了,更敏感细致
+scharrx=cv2.Scharr(img,cv2.CV_64F,1,0)
+scharry=cv2.Scharr(img,cv2.CV_64F,0,1)
+scharrx=cv2.convertScaleAbs(scharrx)
+scharry=cv2.convertScaleAbs(scharry)
+scharrxy=cv2.addWeighted(scharrx,0.5,scharry,0.5,0)
+
+②laplacian算子： 涉及二阶导，缺点对噪声更敏感
+P2+P4+P6+P8-4*P5
+laplacian=cv2.Laplacian(img,cv2.CV_64F)
+laplacian=cv2.convertScaleAbs(laplacian)
