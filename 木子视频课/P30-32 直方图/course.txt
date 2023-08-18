@@ -1,0 +1,18 @@
+1.直方图
+cv2.calcHist(images,channels,mask,hitSize,ranges)
+
+hist=cv2.calcHist([img],[0],None,[256],[0,256])
+
+2.掩码创建
+mask=np.zeros(img.shape[:2],np.uint8)
+mask[100:300,100:400]=255
+
+masked_img=cv2.bitwise_and(img,img,mask=mask)
+
+3.直方图均衡化：累积概率 进行灰度值映射
+equ=cv2.equalizeHist(img)
+
+4.自适应直方图均衡化
+clache=cv2.createCLAN(clipLimit=2.0,titleGridSize=(8,8))
+res_clache=clache.apply(img)
+res=np.hstack(img,equ,res_clache)

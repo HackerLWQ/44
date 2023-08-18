@@ -1,0 +1,13 @@
+1.图像金字塔定义 制作方法:图像放缩 先预备提取一些有价值的信息
+①高斯金字塔
+向下采样法（缩小）与高斯内核卷积 去除所有偶数行和列
+down=cv2.pyrUp(img)
+向上采样法（放大）
+up=cv2.pyrDown(img)
+
+②Laplacian金字塔
+down=cv2.pyrDown(img)
+down_up=cv2.pyrUp(down)
+laplacian_pyr=img-down_up
+cv_show(laplacian_pyr,'Laplacian')
+
