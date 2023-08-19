@@ -1,0 +1,8 @@
+基本流程：1.边缘检测 2.获取轮廓 3.变换
+
+透视变换
+M=cv2.getPerspectiveTransform(rect,dst)#rst变换前 dst变换后
+warped=cv2.warpPerspective(image,M,(maxWidth,maxHeight))
+
+OCR识别 import pytesseract
+text=pytesseract.image_to_string(Image.open(filename))
