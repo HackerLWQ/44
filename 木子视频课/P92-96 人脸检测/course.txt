@@ -1,0 +1,7 @@
+1.关键点定位：五点、68点
+
+2.获取人脸关键点：先找人脸 再找关键点
+API：dlib.net
+dlib.get_frontal_face_detector()
+
+3.根据点集绘制凸包和部位
