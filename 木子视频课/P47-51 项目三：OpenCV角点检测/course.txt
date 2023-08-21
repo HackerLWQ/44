@@ -1,0 +1,17 @@
+原理：角点、边界点、内部点  在移动卷积核下像素大小变化 - 类似边缘检测（只涉及上下或左右）
+
+cv2.cornerHarris(img,blockSize,ksize,k)
+img-必须为 float32 输入图像
+blockSize-角点检测中指定区域的大小
+ksize-Sobel求导中使用的窗口大小
+k-取值参数为[0.04，0.06] 一般用0.04
+
+示例程序
+img=cv2.imread()
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+gray=np.float32(gray)
+dst=cv2.cornerHarris(gray,2,3,0.04)
+
+img[dst>0.01*dst.max()]=[0,0,255]
+cv2.imshow('dst',dst)
+cv2.waitKey(0)
